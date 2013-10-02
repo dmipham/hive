@@ -1,0 +1,49 @@
+<h4>Post a Job</h4>
+
+<%= form_for @job do |f| %>
+
+<div class="form-horizontal">
+	<label>Work Type <small>(Please select one that best describes the work)</small></label>
+	<%= f.select :work_type, ['Moving', 'Cleaning', 'Painting', 'Yard Work', 'IT Help', 'Tutoring', 'Babysitting', 'Event Help', 'Household Errands', 'Maintenanace'] %>
+</div>
+<br>
+<div class="form-horizontal">
+	<label>Description of work</label>
+	<%= f.text_area :description, :rows => 5, :style => "width:380px;", placeholder: "Please describe the work here" %>
+</div>
+<br>
+<div class="form-inline">
+	<label>How many Worker Bees do you need?</label>
+	<%= f.text_field :workers %>
+</div>
+<br>
+<div class="form-inline">
+	<label>How many estimated hours will this take?</label>
+	<%= f.text_field :hours %>
+</div>
+<br>
+<div class="form-horizontal">
+	<label>Date and Time</label>
+	<%= f.datetime_select :date_time, { :order => [:month, :day, :year, :hour, :minute], :ampm => true, :minute_step => 15 }, :style => "width: 125px;" %>
+</div>
+<br>
+<div>If the location of the job is different from your home address, please provide the correct address below.</div><br>
+<div class="form-horizontal">
+	<label>Address Line One</label>
+	<%= f.text_field :address_1, value: current_user.address_1 %></br>
+	<label>Address Line Two</label>
+	<%= f.text_field :address_2, value: current_user.address_2 %>
+</div>
+<br>
+<div class="form-horizontal">
+	<label>City</label>
+	<%= f.text_field :city, value: current_user.city %><br>
+	<label>State</label>
+	<%= f.text_field :state, value: current_user.state %><br>
+	<label>Zip_Code</label>
+	<%= f.text_field :zip_code, value: current_user.zip_code %>
+</div>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<br>
+<div><%= f.submit "Post Job" %></div>
+<% end %>

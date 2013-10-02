@@ -1,0 +1,50 @@
+<%= form_for @user, :url => url_for(:controller => 'users', :action => 'update') do |f| %>
+<% if current_user.role == "Worker"%>
+<legend>Update your work preference</legend>
+<div class="form-inline">
+	<label>School</label>
+	<%= f.text_field :school, placeholder: "School" %>
+</div>
+<br>
+<div class="form-horizontal">
+	<label>Do you have access to a car?</label>
+	<label><%= f.radio_button :drive, true %> Yes</label>
+	<label><%= f.radio_button :drive, false%> No</label>
+</div>
+<br>
+<div class="form-horizontal">
+	<label>What type of jobs are you interested in doing? <small>(Select all that apply)</small></label>
+	<label><%= f.check_box :work_type_moving %> Moving</label>
+	<label><%= f.check_box :work_type_cleaning %> Cleaning</label>
+	<label><%= f.check_box :work_type_painting %> Painting</label>
+	<label><%= f.check_box :work_type_yard %> Yard Work</label>
+	<label><%= f.check_box :work_type_it %> IT Help</label>
+	<label><%= f.check_box :work_type_tutor %> Tutoring</label>
+	<label><%= f.check_box :work_type_babysit %> Babysitting</label>
+	<label><%= f.check_box :work_type_event %> Event Help</label>
+	<label><%= f.check_box :work_type_errands %> Household Errands</label>
+	<label><%= f.check_box :work_type_maintenance %> Maintenance</label>
+</div>
+<br>
+<% end %>
+
+<legend>Update Address</legend>
+<div class="form-horizontal">
+	<label>Address Line One</label>
+	<%= f.text_field :address_1, placeholder: "Address Line One" %>
+	<label>Address Line Two</label>
+	<%= f.text_field :address_2, placeholder: "Address Line Two" %>
+</div>
+<br>
+<div class="form-horizontal">
+	<label>City</label>
+	<%= f.text_field :city, placeholder: "City" %>
+	<label>State</label>
+	<%= f.text_field :state, placeholder: "State" %>
+	<label>Zip_Code</label>
+	<%= f.text_field :zip_code, placeholder: "Zip code" %>
+</div>
+<br>
+<div><%= f.submit "Update" %></div>
+
+<% end %>

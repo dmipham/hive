@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address_1: MyString
+  address_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  work_type: MyString
+  hours: 1
+  workers: 1
+  date_time: 2013-10-01 14:34:58
+
+two:
+  address_1: MyString
+  address_2: MyString
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  work_type: MyString
+  hours: 1
+  workers: 1
+  date_time: 2013-10-01 14:34:58
