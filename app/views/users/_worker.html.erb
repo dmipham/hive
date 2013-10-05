@@ -57,7 +57,7 @@
 						<td><%= j.date_time.strftime("%D")%></td>
 						<td><%= j.date_time.strftime("%l:%M %P")%></td>
 						<td><%= j.estimated_hours %></td>
-						<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
+						<td><%= j.city + ", " + j.state %></td>
 						<td><%= j.work_type %></td>
 						<td><%= j.description %></td>
 						<td><%= link_to "Accept", job_accept_job_path(j), method: :put %>
@@ -83,7 +83,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @job_history.each do |j| %>
+				<% @work_history.each do |j| %>
 				<tr>
 					<td><%= j.id %></td>
 					<td><%= j.date_time.strftime("%D")%></td>
@@ -92,7 +92,7 @@
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
 					<td><%= j.pay_amount %></td>
-					<td><%= j.paid ? "Yes" : "No" %></td>
+					<td><%= j.paid ? "Yes" : (link_to "Get Paid", edit_job_path(j)) %></td>
 				</tr>
 				<% end %>
 			</tbody>

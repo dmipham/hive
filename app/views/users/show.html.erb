@@ -1,6 +1,6 @@
 <div class="container">
 	<br>
-	<legend><%= current_user.first_name + " " + current_user.last_name %><%= " - " + (current_user.nps.to_percent rescue "0%") if current_user.role == "Worker" %></legend>
+	<legend><%= current_user.first_name + " " + current_user.last_name %><%= " - " + (current_user.nps.to_percent rescue "N/A") if current_user.role == "Worker" %></legend>
 	
 	<% if current_user.role == "Worker" %>
 	

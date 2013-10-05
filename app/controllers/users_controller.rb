@@ -24,11 +24,16 @@ class UsersController < ApplicationController
     
     @job = Job.new
     
-    @job_history = current_user.jobs.where("date_time < ?", Date.today)
+    # Beekeepers
+    @completed_work = current_user.jobs.where("date_time < ?", Date.today)
     
-    @scheduled_jobs = current_user.jobs.where("date_time > ?", Date.today)
+    @scheduled_work = current_user.jobs.where("date_time > ?", Date.today)
+    
+    # Worker Bees
     
     @active_jobs = Job.where("worker_id = ?", current_user.id).where("date_time > ?", Date.today).where("accepted = ?", true)
+    
+    @work_history = Job.where("worker_id = ?", current_user.id).where("date_time < ?", Date.today)
     
     @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false)
     

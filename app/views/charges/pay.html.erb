@@ -1,0 +1,15 @@
+<div class="container">
+	<br>
+	<legend>Job ID: <%= @job.id.to_s %> Invoice</legend>
+
+	<b>Date and Time:</b> <%= @job.date_time.strftime("%D %l:%M %P")%><br>
+	<b>Work Type:</b> <%= @job.work_type %><br>
+	<b>Description:</b> <%= @job.description %><br>
+	<b># of Worker Bees:</b> <%= @job.workers %><br>
+	<b># of Hours Worked:</b> <%= @job.actual_hours %> * $25 = <b><i>$<%= @job.actual_hours * 25 %></i></b><br>
+	<b>Total Cost:</b> Hours Worked * # of Worker Bees = $<%= @job.pay_amount %>.00<br>
+	<br>
+
+	<button class="btn btn-primary"><%= link_to "Pay", job_pay_path(@job.id) %> </button>
+	<br>
+</div>

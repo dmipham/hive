@@ -20,7 +20,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @scheduled_jobs.each do |j| %>
+				<% @scheduled_work.each do |j| %>
 				<tr>
 					<td><%= j.id %></td>
 					<td><%= j.date_time.strftime("%D")%></td>
@@ -50,7 +50,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @job_history.each do |j| %>
+				<% @completed_work.each do |j| %>
 				<tr>
 					<td><%= j.id %></td>
 					<td><%= j.date_time.strftime("%D")%></td>
@@ -58,8 +58,8 @@
 					<td><%= j.actual_hours %></td>
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
-					<td><%= j.pay_amount %></td>
-					<td><%= j.paid ? "Yes" : "No" %></td>
+					<td>$<%= j.pay_amount %></td>
+					<td><%= j.paid ? "Yes" : (link_to "Confirm Work", edit_job_path(j)) %></td>
 				</tr>
 				<% end %>
 			</tbody>

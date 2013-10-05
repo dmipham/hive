@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131005012843) do
+ActiveRecord::Schema.define(:version => 20131005193806) do
 
   create_table "jobs", :force => true do |t|
     t.string   "address_1"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20131005012843) do
     t.boolean  "work_type_maintenance",  :limit => 255
     t.integer  "nps"
     t.integer  "job_id"
+    t.string   "stripe"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,15 @@
+<div class="container">
+	<br>
+
+Please click the button to provide your credit card information. Your card will only be charged when a posted job is completed.
+
+<%= form_tag charges_path do %>
+
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="pk_test_S5BeEHURB93CACh6X9dkhI4y"
+          data-description="Thank you for your payment"
+          data-amount= "" ></script>
+<% end %>
+
+<br>
+</div>
