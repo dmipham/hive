@@ -1,0 +1,100 @@
+<ul class="nav nav-tabs honey">
+    <li class="active"><a href="#tab1" data-toggle="tab">Scheduled Jobs</a></li>
+    <li><a href="#tab2" data-toggle="tab">Completed Jobs</a></li>
+		<li><a href="#tab3" data-toggle="tab">Post New Job</a></li>
+		<li><a href="#tab4" data-toggle="tab">Update Account</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Job ID</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Est. Hours</th>
+					<th>Location</th>
+					<th>Work Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @scheduled_jobs.each do |j| %>
+				<tr>
+					<td><%= j.id %></td>
+					<td><%= j.date_time.strftime("%D")%></td>
+					<td><%= j.date_time.strftime("%l:%M %P")%></td>
+					<td><%= j.estimated_hours %></td>
+					<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
+					<td><%= j.work_type %></td>
+					<td><%= j.description %></td>
+				</tr>
+				<% end %>
+			</tbody>
+			</table>
+    </div>
+	
+    <div class="tab-pane" id="tab2">
+      <table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Job ID</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Actual Hours</th>
+					<th>Work Type</th>
+					<th>Description</th>
+					<th>Pay Amount</th>
+					<th>Paid</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @job_history.each do |j| %>
+				<tr>
+					<td><%= j.id %></td>
+					<td><%= j.date_time.strftime("%D")%></td>
+					<td><%= j.date_time.strftime("%l:%M %P")%></td>
+					<td><%= j.actual_hours %></td>
+					<td><%= j.work_type %></td>
+					<td><%= j.description %></td>
+					<td><%= j.pay_amount %></td>
+					<td><%= j.paid ? "Yes" : "No" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+			</table>
+    </div>
+	
+    <div class="tab-pane" id="tab3">
+			<% if current_user.role == "Keeper" %>
+      <%= render 'job' %>	
+			<% else %>
+			Sorry, you do not have permission to post jobs.
+			<% end %>			
+    </div>
+	
+    <div class="tab-pane" id="tab4">
+			<%= form_for @user, :url => url_for(:controller => 'users', :action => 'update') do |f| %>
+			<h4>Update Address</h4>
+			<div class="form-horizontal">
+				<label>Address Line One</label>
+				<%= f.text_field :address_1, placeholder: "Address Line One" %>
+				<label>Address Line Two</label>
+				<%= f.text_field :address_2, placeholder: "Address Line Two" %>
+			</div>
+			<br>
+			<div class="form-horizontal">
+				<label>City</label>
+				<%= f.text_field :city, placeholder: "City" %>
+				<label>State</label>
+				<%= f.text_field :state, placeholder: "State" %>
+				<label>Zip_Code</label>
+				<%= f.text_field :zip_code, placeholder: "Zip code" %>
+			</div>
+			<br>
+			<div><%= f.submit "Update" %></div>
+
+			<% end %>
+    
+    </div>

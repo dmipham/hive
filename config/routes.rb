@@ -6,7 +6,9 @@ Hive::Application.routes.draw do
   
   resources :users
   
-  resources :jobs
+  resources :jobs do
+    put 'accept_job', :to => 'jobs#accept'
+  end
   
   
   # The priority is based upon order of creation:

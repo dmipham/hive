@@ -1,0 +1,155 @@
+<ul class="nav nav-tabs honey">
+    <li class="active"><a href="#tab1" data-toggle="tab">Active Jobs</a></li>
+    <li><a href="#tab2" data-toggle="tab">Upcoming Opportunities</a></li>
+		<li><a href="#tab3" data-toggle="tab">Work History</a></li>
+		<li><a href="#tab4" data-toggle="tab">Update Account</a></li>
+  </ul>
+	
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Job ID</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Est. Hours</th>
+					<th>Location</th>
+					<th>Work Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @active_jobs.each do |j| %>
+				<tr>
+					<td><%= j.id %></td>
+					<td><%= j.date_time.strftime("%D")%></td>
+					<td><%= j.date_time.strftime("%l:%M %P")%></td>
+					<td><%= j.estimated_hours %></td>
+					<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
+					<td><%= j.work_type %></td>
+					<td><%= j.description %></td>
+				</tr>
+				<% end %>
+			</tbody>
+			</table>
+    </div>
+		
+    <div class="tab-pane" id="tab2">
+	    <div class="tab-pane active" id="tab1">
+	      <table class="table table-striped table-hover">
+					<thead>
+					<tr>
+						<th>Job ID</th>
+						<th>Date</th>
+						<th>Time</th>
+						<th>Est. Hours</th>
+						<th>Location</th>
+						<th>Work Type</th>
+						<th>Description</th>
+						<th>Accept</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @opportunities.each do |j| %>
+					<tr>
+						<td><%= j.id %></td>
+						<td><%= j.date_time.strftime("%D")%></td>
+						<td><%= j.date_time.strftime("%l:%M %P")%></td>
+						<td><%= j.estimated_hours %></td>
+						<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
+						<td><%= j.work_type %></td>
+						<td><%= j.description %></td>
+						<td><%= link_to "Accept", job_accept_job_path(j), method: :put %>
+					</tr>
+					<% end %>
+				</tbody>
+				</table>
+	    </div>
+    </div>
+		
+    <div class="tab-pane" id="tab3">
+      <table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Job ID</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Actual Hours</th>
+					<th>Work Type</th>
+					<th>Description</th>
+					<th>Pay Amount</th>
+					<th>Paid</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @job_history.each do |j| %>
+				<tr>
+					<td><%= j.id %></td>
+					<td><%= j.date_time.strftime("%D")%></td>
+					<td><%= j.date_time.strftime("%l:%M %P")%></td>
+					<td><%= j.actual_hours %></td>
+					<td><%= j.work_type %></td>
+					<td><%= j.description %></td>
+					<td><%= j.pay_amount %></td>
+					<td><%= j.paid ? "Yes" : "No" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+			</table>
+					
+    </div>
+		
+    <div class="tab-pane" id="tab4">
+			<%= form_for @user, :url => url_for(:controller => 'users', :action => 'update') do |f| %>
+			<h4>Update your work preference</h4>
+			<div class="form-inline">
+				<label>School</label>
+				<%= f.text_field :school, placeholder: "School" %>
+			</div>
+			<br>
+			<div class="form-horizontal">
+				<label>Do you have access to a car?</label>
+				<label><%= f.radio_button :drive, true %> Yes</label>
+				<label><%= f.radio_button :drive, false%> No</label>
+			</div>
+			<br>
+			<div class="form-horizontal">
+				<label>What type of jobs are you interested in doing? <small>(Select all that apply)</small></label>
+				<label><%= f.check_box :work_type_moving %> Moving</label>
+				<label><%= f.check_box :work_type_cleaning %> Cleaning</label>
+				<label><%= f.check_box :work_type_painting %> Painting</label>
+				<label><%= f.check_box :work_type_yard %> Yard Work</label>
+				<label><%= f.check_box :work_type_it %> IT Help</label>
+				<label><%= f.check_box :work_type_tutor %> Tutoring</label>
+				<label><%= f.check_box :work_type_babysit %> Babysitting</label>
+				<label><%= f.check_box :work_type_event %> Event Help</label>
+				<label><%= f.check_box :work_type_errands %> Household Errands</label>
+				<label><%= f.check_box :work_type_maintenance %> Maintenance</label>
+			</div>
+			<br>
+
+			<h4>Update Address</h4>
+			<div class="form-horizontal">
+				<label>Address Line One</label>
+				<%= f.text_field :address_1, placeholder: "Address Line One" %>
+				<label>Address Line Two</label>
+				<%= f.text_field :address_2, placeholder: "Address Line Two" %>
+			</div>
+			<br>
+			<div class="form-horizontal">
+				<label>City</label>
+				<%= f.text_field :city, placeholder: "City" %>
+				<label>State</label>
+				<%= f.text_field :state, placeholder: "State" %>
+				<label>Zip_Code</label>
+				<%= f.text_field :zip_code, placeholder: "Zip code" %>
+			</div>
+			<br>
+			<div><%= f.submit "Update" %></div>
+
+			<% end %>
+      
+    </div>
+		
+  </div>

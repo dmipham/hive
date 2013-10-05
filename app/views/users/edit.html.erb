@@ -1,3 +1,5 @@
+<div class="container">
+	
 <%= form_for @user, :url => url_for(:controller => 'users', :action => 'update') do |f| %>
 <% if current_user.role == "Worker"%>
 <legend>Update your work preference</legend>
@@ -48,3 +50,7 @@
 <div><%= f.submit "Update" %></div>
 
 <% end %>
+
+</div>
+
+<br>

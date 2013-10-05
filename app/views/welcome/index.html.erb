@@ -1,6 +1,11 @@
+<div class="jumbotron">
+	
 	<div class="row-fluid">
+		
 		<div class="span8">
-			Video goes here
+			
+			<iframe width="700" height="315" src="//www.youtube.com/embed/sSk_ev1eZec" frameborder="0" allowfullscreen align="right"></iframe>
+			
 		</div>
 		
 		<div class="span4">
@@ -13,5 +18,11 @@
 				<%= f.submit 'Sign in' %>
 			<% end %>
 			<%= link_to "Forgot your password?", new_password_path('user') %><p>
-			<%= link_to "Join Today", new_user_registration_path %>
+			<button class="btn btn-large btn-info honey"><%= link_to "Join Today", new_user_registration_path %></button>
 		</div>
+		
+	</div>
+	
+</div>
+
+

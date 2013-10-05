@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  before_filter :authenticate_user!
+  
   def index
   end
   
@@ -17,6 +19,19 @@ class UsersController < ApplicationController
   end
   
   def show
+    
+    @user = current_user
+    
+    @job = Job.new
+    
+    @job_history = current_user.jobs.where("date_time < ?", Date.today)
+    
+    @scheduled_jobs = current_user.jobs.where("date_time > ?", Date.today)
+    
+    @active_jobs = Job.where("worker_id = ?", current_user.id).where("date_time > ?", Date.today).where("accepted = ?", true)
+    
+    @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false)
+    
   end
   
 end

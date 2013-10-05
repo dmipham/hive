@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131002142615) do
+ActiveRecord::Schema.define(:version => 20131005012843) do
 
   create_table "jobs", :force => true do |t|
     t.string   "address_1"
@@ -20,13 +20,19 @@ ActiveRecord::Schema.define(:version => 20131002142615) do
     t.string   "state"
     t.string   "zip_code"
     t.string   "work_type"
-    t.integer  "hours"
+    t.integer  "estimated_hours"
     t.integer  "workers"
     t.datetime "date_time"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.text     "description"
     t.integer  "user_id"
+    t.integer  "actual_hours"
+    t.integer  "pay_amount"
+    t.boolean  "paid",            :default => false
+    t.integer  "rating"
+    t.boolean  "accepted",        :default => false
+    t.integer  "worker_id"
   end
 
   create_table "users", :force => true do |t|
@@ -66,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20131002142615) do
     t.boolean  "work_type_event",        :limit => 255
     t.boolean  "work_type_errands",      :limit => 255
     t.boolean  "work_type_maintenance",  :limit => 255
+    t.integer  "nps"
+    t.integer  "job_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

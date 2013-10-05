@@ -1,11 +1,6 @@
 <div class="container">
 <h4>Post a Job</h4>
 
-<% if current_user.role == "Worker"%>
-Sorry, you do not have permission to post jobs.
-
-<% else %>
-
 <%= form_for @job do |f| %>
 
 <div class="form-horizontal">
@@ -52,8 +47,6 @@ Sorry, you do not have permission to post jobs.
 <%= f.hidden_field :user_id, value: current_user.id %>
 <br>
 <div><%= f.submit "Post Job" %></div>
-<% end %>
-
 <% end %>
 
 </div>
