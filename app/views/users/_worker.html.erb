@@ -52,6 +52,7 @@
 				</thead>
 				<tbody>
 					<% @opportunities.each do |j| %>
+					<% if j.users.count < j.workers + 1 %>
 					<tr>
 						<td><%= j.id %></td>
 						<td><%= j.date_time.strftime("%D")%></td>
@@ -62,6 +63,7 @@
 						<td><%= j.description %></td>
 						<td><%= link_to "Accept", job_accept_job_path(j), method: :put %>
 					</tr>
+					<% end %>
 					<% end %>
 				</tbody>
 				</table>

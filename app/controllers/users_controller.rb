@@ -22,10 +22,10 @@ class UsersController < ApplicationController
     
     @user = current_user
     
-    @job = Job.new
+    @new_job = Job.new
     
     # Beekeepers
-    @completed_work = current_user.jobs.where("date_time < ?", Date.today)
+    @completed_work = current_user.jobs.where("date_time < ?", Date.today).where("accepted = ?", true)
     
     @scheduled_work = current_user.jobs.where("date_time > ?", Date.today)
     

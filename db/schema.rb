@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131005193806) do
+ActiveRecord::Schema.define(:version => 20131008182839) do
 
   create_table "jobs", :force => true do |t|
     t.string   "address_1"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(:version => 20131005193806) do
     t.integer  "rating"
     t.boolean  "accepted",        :default => false
     t.integer  "worker_id"
+  end
+
+  create_table "jobs_users", :id => false, :force => true do |t|
+    t.integer "job_id"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|

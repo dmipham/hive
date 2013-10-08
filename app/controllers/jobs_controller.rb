@@ -12,7 +12,7 @@ class JobsController < ApplicationController
   
   def create
     @job = Job.create(params[:job])
-    current_user.update_attribute(:job_id, @job.id)
+    current_user.jobs << @job
     redirect_to user_path(current_user)
   end
   
@@ -36,7 +36,7 @@ class JobsController < ApplicationController
   
   def accept
     @job = Job.find(params[:job_id])
-    @job.update_attribute(:worker_id, current_user[:id])
+    current_user.jobs << @job
     @job.update_attribute(:accepted, true)
     redirect_to user_path(current_user) 
   end
