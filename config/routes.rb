@@ -8,6 +8,8 @@ Hive::Application.routes.draw do
     get 'card', :to => 'charges#new'
   end
   
+  resources :charges
+  
   resources :jobs do
     put 'accept_job', :to => 'jobs#accept'
     get 'pay', :to => 'charges#pay'
