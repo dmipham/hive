@@ -24,8 +24,17 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     if @job.update_attributes(params[:job])
       @job.update_attribute(:pay_amount, 25 * (@job.actual_hours * @job.workers))
-     redirect_to user_path(current_user) if current_user.role == "Worker"
-     redirect_to job_pay_path(@job) if current_user.role == "Keeper"
+      
+      if current_user.role == "Worker"
+        redirect_to user_path(current_user)
+      else
+        if current_user.stripe != nil
+          redirect_to job_pay_path(@job)
+        else
+          redirect_to user_card_path(current_user)
+        end
+      end
+      
     else
       render 'edit'
     end
