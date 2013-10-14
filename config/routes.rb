@@ -12,6 +12,9 @@ Hive::Application.routes.draw do
     resources :charges
   end
   
+  match '/terms' => 'welcome#terms'
+  match '/privacy' => 'welcome#privacy'
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

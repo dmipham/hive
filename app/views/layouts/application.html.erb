@@ -13,9 +13,11 @@
 			<a href="/" class="brand">
 		    <%= image_tag("hive_yellow_small.png") %> Hired Hive</a>
 		    <ul class="nav pull-right">
-		      <li><%= link_to "Home", root_path %></li>
 					<li><%= link_to "Sign Up", new_user_registration_path if !user_signed_in? %></li>
-					<li><%= link_to "Log Out", destroy_user_session_path, {:method => "DELETE"} if user_signed_in? %></li>
+					<% if user_signed_in? %>
+					<li><%= link_to "Dashboard", user_path(current_user) %></li>
+					<li><%= link_to "Log Out", destroy_user_session_path, {:method => "DELETE"} %></li>
+					<% end %>
 		    </ul>
 		  </div>
 		

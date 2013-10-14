@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     
     @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false)
     
+    
   end
   
 end
