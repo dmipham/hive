@@ -1,5 +1,12 @@
 <div class="container">
 	
-	<legend><%= @job.id + " - " @job.work_type + " on" @job.date_time.strftime("%D at %l:%M %P") %></legend>
+	<legend><%= "Job ID: " + @job.id.to_s + " - " + @job.work_type + " on " + @job.date_time.strftime("%D at %l:%M %P") %></legend>
+	
+	<label>Worker Bees</label>
+	<% @job.users.where("role = ?", "Worker").each do |w| %>
+	<ol>
+		<li><%= w.first_name + " " + w.last_name + " | " + number_to_phone(w.phone, area_code: true) %></li>
+	</ol>
+	<% end %>
 	
 </div>

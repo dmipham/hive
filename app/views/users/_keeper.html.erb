@@ -1,3 +1,9 @@
+<script type="text/javascript">
+$(function(){
+     $('.dropdown-toggle').dropdown();
+});
+</script>
+
 <ul class="nav nav-tabs honey">
     <li class="active"><a href="#tab1" data-toggle="tab">Scheduled Jobs</a></li>
     <li><a href="#tab2" data-toggle="tab">Completed Jobs</a></li>
@@ -30,7 +36,18 @@
 					<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
-					<td><%= link_to "More", job_path(j) %></td>
+					<td><div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Worker Bees
+    <span class="caret"></span>
+  </a>
+  <ol class="dropdown-menu">
+		<% j.users.where("role = ?", "Worker").each do |w| %>
+    <li><%= w.first_name + " " + w.last_name%><br><%= number_to_phone(w.phone, area_code: true) %></li>
+		<li class="divider"></li>
+		<% end %>
+  </ol>
+</div></td>
 				</tr>
 				<% end %>
 			</tbody>
