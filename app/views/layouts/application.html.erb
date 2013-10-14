@@ -21,19 +21,23 @@
 					<% end %>
 		    </ul>
 		  </div>
-			<div class="container red">
-				<br>
-		  <%- flash.each do |name, msg| -%>
-		    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-		  <%- end -%> 
-		</div>
-		
 	</div>
+	<div class="container red">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <%- end -%> 
+</div>
 	<div>
 <%= yield %>
 </div>
 <div class="footer" >
-    <p style="padding-left: 10px; padding-top: 30px;">Copyright © 2013 Hired Hive, Inc.</p>
+	<p style="padding-top: 10px;">
+		<ul class="footer-links">
+			<li class="footer-links"><%= link_to "About", about_path %></li>
+			<li class="footer-links"><%= link_to "Privacy Policy", privacy_path %></li>
+			<li class="footer-links"><%= link_to "Terms", terms_path %></li>
+		</ul></p>
+  <p style="padding-left: 10px;">Copyright © 2013 Hired Hive, Inc.</p>
 </div>
 
 

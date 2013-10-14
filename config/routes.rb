@@ -15,6 +15,7 @@ Hive::Application.routes.draw do
     get 'pay', :to => 'charges#pay'
   end
   
+  match '/about' => 'welcome#about'
   match '/terms' => 'welcome#terms'
   match '/privacy' => 'welcome#privacy'
   

@@ -14,8 +14,15 @@
 
 .footer {
     background: #999;
-		height: 75px;
+		height: 90px;
 		color: #fff;
   } 
 	
+	ul.footer-links{
+	  margin-left: 10px;
+	}
 
+	li.footer-links {
+	  display: inline;
+	  margin-right: 10px;
+	}
