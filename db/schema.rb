@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131013154210) do
+ActiveRecord::Schema.define(:version => 20131014135328) do
 
   create_table "jobs", :force => true do |t|
     t.string   "address_1"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20131013154210) do
     t.integer  "job_id"
     t.string   "stripe"
     t.integer  "pay_level"
+    t.boolean  "approved",                              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

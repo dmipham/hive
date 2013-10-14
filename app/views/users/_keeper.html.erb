@@ -17,6 +17,7 @@
 					<th>Location</th>
 					<th>Work Type</th>
 					<th>Description</th>
+					<th>Worker Bee Info</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,6 +30,7 @@
 					<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
+					<td><%= link_to "More", job_path(j) %></td>
 				</tr>
 				<% end %>
 			</tbody>

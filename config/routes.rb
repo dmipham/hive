@@ -4,12 +4,13 @@ Hive::Application.routes.draw do
 
   root to: "welcome#index"
   
-  resources :users
+  resources :users do
+    get 'card', :to => 'charges#new'
+  end
   
   resources :jobs do
     put 'accept_job', :to => 'jobs#accept'
     get 'pay', :to => 'charges#pay'
-    resources :charges
   end
   
   match '/terms' => 'welcome#terms'

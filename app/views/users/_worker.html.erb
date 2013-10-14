@@ -1,3 +1,4 @@
+<% if current_user.approved? %>
 <ul class="nav nav-tabs honey">
     <li class="active"><a href="#tab1" data-toggle="tab">Active Jobs</a></li>
     <li><a href="#tab2" data-toggle="tab">Upcoming Opportunities</a></li>
@@ -18,6 +19,8 @@
 					<th>Location</th>
 					<th>Work Type</th>
 					<th>Description</th>
+					<th>Beekeeper</th>
+					<th>Phone</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,6 +33,8 @@
 					<td><%= j.address_1 + " " + j.address_2 + " " + j.city + ", " + j.state %></td>
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
+					<td><%= j.users.where("role = ?", "Keeper").first.first_name + " " + j.users.where("role = ?", "Keeper").first.last_name %></td>
+					<td><%= number_to_phone(j.users.where("role = ?", "Keeper").first.phone, area_code: true) %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -104,23 +109,27 @@
     </div>
 			
     <div class="tab-pane" id="tab4">
-      <table class="table table-striped table-hover">
-				<thead>
+			<table class="table table-striped table-hover">
+				<tbody>
+					<% @work_history.each do |j| %>
 				<tr>
 					<th>Jobs Completed</th>
-					<th>Amount Paid to Date</th>
-					<th>Hours worked</th>
-					<th>Average Hourly Rate</th>
-					<th>Current Pay Level</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @work_history.each do |j| %>
-				<tr>
 					<td><%= @work_history.count %></td>
+				</tr>
+				<tr>
+					<th>Amount Paid to Date</th>
 					<td><%= j.pay_amount %></td>
+				</tr>
+				<tr>
+					<th>Hours worked</th>
 					<td><%= j.actual_hours %></td>
+				</tr>
+				<tr>
+					<th>Average Hourly Rate</th>
 					<td><%= j.pay_amount/j.actual_hours rescue "0" %></td>
+				</tr>
+				<tr>
+					<th>Current Pay Level</th>
 					<td><%= current_user.pay_level %></td>
 				</tr>
 				<% end %>
@@ -136,7 +145,7 @@
 			<h4>Update your work preference</h4>
 			<div class="form-inline">
 				<label>School</label>
-				<%= f.text_field :school, placeholder: "School" %>
+				<%= f.select :school, ['UNC Chapel Hill','UNC Wilmington'] %>
 			</div>
 			<br>
 			<div class="form-horizontal">
@@ -184,3 +193,9 @@
     </div>
 		
   </div>
+	
+	<% else %>
+
+	Thank you for your interest in becoming a Worker Bee! Someone will contact you shortly to set up an interview.
+	
+	<% end %>

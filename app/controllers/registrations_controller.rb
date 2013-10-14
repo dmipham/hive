@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     if current_user.role == "Worker"
       edit_user_path(current_user)
     else
-      job_pay_path(params[:job_id])
+      user_card_path(current_user)
     end
   end
   
