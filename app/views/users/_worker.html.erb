@@ -99,7 +99,7 @@
 					<td><%= j.actual_hours %></td>
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
-					<td><%= j.pay_amount %></td>
+					<td>$<%= j.actual_hours * current_user.pay_level %></td>
 					<td>
 						<% if j.paid? %>
 							Yes
@@ -128,7 +128,7 @@
 				</tr>
 				<tr>
 					<th>Amount Paid to Date</th>
-					<td><%= j.pay_amount %></td>
+					<td>$<%= j.actual_hours * current_user.pay_level rescue "N/A" %></td>
 				</tr>
 				<tr>
 					<th>Hours worked</th>
@@ -136,11 +136,11 @@
 				</tr>
 				<tr>
 					<th>Average Hourly Rate</th>
-					<td><%= j.pay_amount/j.actual_hours rescue "0" %></td>
+					<td>$<%= (j.actual_hours * current_user.pay_level)/j.actual_hours rescue "0" %></td>
 				</tr>
 				<tr>
 					<th>Current Pay Level</th>
-					<td><%= current_user.pay_level %></td>
+					<td>$<%= current_user.pay_level %></td>
 				</tr>
 				<% end %>
 			</tbody>

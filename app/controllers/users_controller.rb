@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     
     @work_history = current_user.jobs.where("date_time < ?", Date.today)
     
-    @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false)
+    @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false).where("workers >= ?", (Job.find(params[:id]).users.count - 1))
     
     
   end
