@@ -128,15 +128,11 @@
 				</tr>
 				<tr>
 					<th>Amount Paid to Date</th>
-					<td>$<%= j.actual_hours * current_user.pay_level rescue "N/A" %></td>
+					<td>$<%= current_user.jobs.collect(&:actual_hours).sum * current_user.pay_level rescue "N/A" %></td>
 				</tr>
 				<tr>
 					<th>Hours worked</th>
 					<td><%= j.actual_hours %></td>
-				</tr>
-				<tr>
-					<th>Average Hourly Rate</th>
-					<td>$<%= (j.actual_hours * current_user.pay_level)/j.actual_hours rescue "0" %></td>
 				</tr>
 				<tr>
 					<th>Current Pay Level</th>
