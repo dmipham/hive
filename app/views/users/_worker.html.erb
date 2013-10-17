@@ -99,7 +99,7 @@
 					<td><%= j.actual_hours %></td>
 					<td><%= j.work_type %></td>
 					<td><%= j.description %></td>
-					<td>$<%= j.actual_hours * current_user.pay_level %></td>
+					<td>$<%= j.actual_hours * current_user.pay_level rescue "N/A" %></td>
 					<td>
 						<% if j.paid? %>
 							Yes
