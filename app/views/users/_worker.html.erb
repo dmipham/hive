@@ -127,11 +127,11 @@
 				</tr>
 				<tr>
 					<th>Amount Paid to Date</th>
-					<td>$<%= current_user.jobs.collect(&:actual_hours).sum * current_user.pay_level rescue "N/A" %></td>
+					<td>$<%= @total_paid rescue "N/A" %></td>
 				</tr>
 				<tr>
 					<th>Hours worked</th>
-					<td><%= current_user.jobs.collect(&:actual_hours).sum %></td>
+					<td><%= @total_hours %></td>
 				</tr>
 				<tr>
 					<th>Current Pay Level</th>

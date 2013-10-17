@@ -37,6 +37,11 @@ class UsersController < ApplicationController
     
     @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false).where("workers >= ?", (Job.find(params[:id]).users.count - 1))
     
+		sum = 0
+    
+    @total_hours = (current_user.jobs.collect(&:actual_hours)).each { |i| sum += i}
+    @total_paid = @total_hours * current_user.pay_level
+    
     
   end
   
