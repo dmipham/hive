@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 		sum = 0
     
     @total_hours = (current_user.jobs.collect(&:actual_hours)).each { |i| sum += i}
-    @total_paid = @total_hours * current_user.pay_level
+    @total_paid = @total_hours * current_user.pay_level rescue "N/A"
     
     
   end
