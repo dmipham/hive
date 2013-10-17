@@ -121,7 +121,6 @@
     <div class="tab-pane" id="tab4">
 			<table class="table table-striped table-hover">
 				<tbody>
-					<% @work_history.each do |j| %>
 				<tr>
 					<th>Jobs Completed</th>
 					<td><%= @work_history.count %></td>
@@ -132,13 +131,12 @@
 				</tr>
 				<tr>
 					<th>Hours worked</th>
-					<td><%= j.actual_hours %></td>
+					<td><%= current_user.jobs.collect(&:actual_hours).sum %></td>
 				</tr>
 				<tr>
 					<th>Current Pay Level</th>
 					<td>$<%= current_user.pay_level %></td>
 				</tr>
-				<% end %>
 			</tbody>
 			</table>
 			
