@@ -35,12 +35,11 @@ class UsersController < ApplicationController
     
     @work_history = current_user.jobs.where("date_time < ?", Date.today)
     
-    @opportunities = Job.where("date_time > ?", Date.today).where("accepted = ?", false).where("workers >= ?", (Job.find(params[:id]).users.count - 1))
+    @opportunities = Job.where("date_time > ?", Date.today).where("workers >= ?", (Job.find(params[:id]).users.count - 1))
     
-		sum = 0
     hours_worked = current_user.jobs.collect(&:actual_hours).reject!(&:nil?)
     
-    @total_hours = hours_worked.inject(:+)
+    @total_hours = hours_worked.empty? ? 0 : hours_worked.inject(:+)
     @total_paid = @total_hours * current_user.pay_level rescue "N/A"
     
     

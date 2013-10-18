@@ -1,0 +1,97 @@
+<div class="container">
+	<br>
+	<% if current_user.admin? %>
+	<ul class="nav nav-tabs honey">
+	    <li class="active"><a href="#tab1" data-toggle="tab">User Stats</a></li>
+	    <li><a href="#tab2" data-toggle="tab">Pending Worker Bees</a></li>
+	  </ul>
+	
+	
+	  <div class="tab-content">
+	    <div class="tab-pane active" id="tab1">
+				
+	<legend>User Stats</legend>
+	
+  <table class="table table-striped table-hover">
+		<tbody>
+		<tr>
+			<th>Total Users</th>
+			<td><%= @users.count %></td>
+		</tr>
+		<tr>
+			<th>Total Worker Bees</th>
+			<td><%= @worker_bees.count %></td>
+		</tr>
+		<tr>
+			<th>Pending Worker Bees</th>
+			<td><%= @pending_wb.count %></td>
+		</tr>
+		<tr>
+			<th>Total Beekeepers</th>
+			<td><%= @beekeepers.count %></td>
+		</tr>
+		<tr>
+			<th>Total Work Hours</th>
+			<td><%= @total_hours %></td>
+		</tr>
+		<tr>
+			<th>Total Revenue collected</th>
+			<td>$<%= @total_revenue %></td>
+		</tr>
+		<tr>
+			<th>Total Paid to Worker Bees</th>
+			<td>$<%= @total_hours * 10 %></td>
+		</tr>
+		<tr>
+			<th>Net HH Income</th>
+			<td>$<%= @total_hours * 15 %></td>
+		</tr>
+	</body>
+	</table>
+	
+</div>
+
+<div class="tab-pane" id="tab2">
+	
+	<legend>Pending Worker Bees</legend>
+	
+  <table class="table table-striped table-hover">
+		<thead>
+		<tr>
+			<th>User ID</th>
+			<th>Name</th>
+			<th>School</th>
+			<th>Dirve</th>
+			<th>Job Interest</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Approve</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @pending_wb.each do |w| %>
+		<tr>
+			<td><%= w.id %></td>
+			<td><%= w.first_name + " " + w.last_name %></td>
+			<td><%= w.school %></td>
+			<td><%= w.drive ? "Yes" : "No" %></td>
+			<td><%= w.work_type %></td>
+			<td><%= mail_to w.email %></td>
+			<td>$<%= number_to_phone(w.phone, area_code: true) %></td>
+			<td><%= link_to "Approve", user_approve_path(w), method: "POST" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+	</table>
+	
+</div>
+</div>
+
+<% else %>
+
+You do not have privileges to view this page.
+
+<% end %>
+	
+</div>
+<br>

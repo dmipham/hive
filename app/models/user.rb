@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :address_1, :address_2, :city, :drive, :first_name, :last_name, :phone, :rating, :school, :state, :work_type, :zip_code, :admin, :role, :work_type_moving, :work_type_cleaning, :work_type_painting, :work_type_yard, :work_type_it, :work_type_tutor, :work_type_babysit, :work_type_event, :work_type_errands, :work_type_maintenance, :job_id, :stripe, :nps, :approved
   
-  validates_presence_of :address_1, :city, :state, :phone, :zip_code
+  validates_presence_of :address_1, :city, :state, :phone, :zip_code, :role
   
   def save_stripe_customer_id(customer_id)
     update_attributes(:stripe => customer_id)

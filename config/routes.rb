@@ -6,9 +6,12 @@ Hive::Application.routes.draw do
   
   resources :users do
     get 'card', :to => 'charges#new'
+    post 'approve', :to => 'admin#approve'
   end
   
   resources :charges
+  
+  resources :admin
   
   resources :jobs do
     put 'accept_job', :to => 'jobs#accept'
