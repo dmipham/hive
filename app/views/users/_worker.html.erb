@@ -58,7 +58,7 @@
 				</thead>
 				<tbody>
 					<% @opportunities.each do |j| %>
-					<% if j.users.count < j.workers + 1 %>
+					<% if j.users.count < j.workers + 1 && j.users.any? { |u| u.id != current_user.id } %>
 					<tr>
 						<td><%= j.id %></td>
 						<td><%= j.date_time.strftime("%D")%></td>

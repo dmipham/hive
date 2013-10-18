@@ -77,7 +77,7 @@
 			<td><%= w.drive ? "Yes" : "No" %></td>
 			<td><%= w.work_type %></td>
 			<td><%= mail_to w.email %></td>
-			<td>$<%= number_to_phone(w.phone, area_code: true) %></td>
+			<td><%= number_to_phone(w.phone, area_code: true) %></td>
 			<td><%= link_to "Approve", user_approve_path(w), method: "POST" %></td>
 		</tr>
 		<% end %>
@@ -89,7 +89,7 @@
 
 <% else %>
 
-You do not have privileges to view this page.
+You must be an administrator to view this page.
 
 <% end %>
 	

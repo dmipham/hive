@@ -4,7 +4,7 @@
 	
 	<% if current_user.role == "Keeper" %>
 	<div>
-		<label>Would you recommend your Worker Bee to a friend or family member?</label>
+		<label><strong>Would you recommend your Worker Bee to a friend or family member?</strong></label>
 		<label class="radio"><%= f.radio_button :rating, 5 %> 5 - Yes, definitely would</label>
 		<label class="radio"><%= f.radio_button :rating, 4 %> 4</label>
 		<label class="radio"><%= f.radio_button :rating, 3 %> 3 - Neutral</label>
@@ -13,11 +13,12 @@
 	</div>
 	<br>
 	<% end %>
-	
-	<div class="form-horizontal">
-		<label>Specify Actual Hours Completed</label>
-		<%= f.select :actual_hours, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %>
+		<label><strong>Please specify Actual Time it took to complete the job</strong></label>
+		<div class="form-inline">
+		<span>Hours <%= f.select :actual_hours, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %></span> : <span><%= f.select :actual_minutes, [00, 15, 30, 45]%> Minutes</span>
 	</div>
+	<br>
+	<div><small><strong>Note:</strong> All jobs equal to or greater than 30 minutes will round to the next hour for payment purposes.</small></div>
 	<br>
 	
 	<%= f.submit "Confirm/Pay" %>

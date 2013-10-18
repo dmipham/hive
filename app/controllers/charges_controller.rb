@@ -21,7 +21,7 @@ class ChargesController < JobsController
     # Save the customer ID in your database so you can use it later
     current_user.save_stripe_customer_id(customer.id)
     
-    redirect_to user_path(current_user), :flash => { :success => "Thank you for your payment" }   
+    redirect_to user_path(current_user), :flash => { :notice => "Thank you for signing up as a Beekeeper" }   
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -46,7 +46,7 @@ class ChargesController < JobsController
     
     @job.update_attribute(:paid, true)
     
-    redirect_to user_path(current_user), :flash => { :success => "Thank you for your payment" }   
+    redirect_to user_path(current_user), :flash => { :notice => "Thank you for your payment" }   
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

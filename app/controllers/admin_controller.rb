@@ -24,7 +24,7 @@ class AdminController < ApplicationController
     @user = User.find(params[:user_id])
     
     @user.update_attribute(:approved, true)
-    redirect_to :back, flash: { :success => "Worker Bee successfully approved" }
+    redirect_to :back, flash: { :notice => "Worker Bee successfully approved" }
     
   end
   
